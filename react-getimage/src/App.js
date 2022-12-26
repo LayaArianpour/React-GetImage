@@ -5,23 +5,24 @@ import {Container,Row,Card} from 'react-bootstrap'
 
 function App() {
 
-  const[image,setImage]=useState([])
+  const[myimage,setImage]=useState([])
 
   useEffect(()=>{
     
     async function loadImage(){
       var imageparams={
         method:'GET',
-        headers:{
+        Headers:{
           'Content-Type':'application/json'
         },
       }
 
-      var getImage=await fetch('https://random-d.uk/api/random',imageparams)
+      // eslint-disable-next-line no-unused-vars
+      var getImageFromApi=await fetch('https://random-d.uk/api/random',imageparams)
       .then(Response=>Response.json())
       .then(data=>{
-        console.log(data.url)
         setImage(data)
+        console.log(myimage.url)
       })
 
     }
@@ -33,7 +34,8 @@ function App() {
     <Container className='m-auto'>
       <Row className='col-10'>
         <Card>
-          <Card.Img src={image.url} />
+          <Card.Img src={myimage.url} />
+          <Card.Title>{myimage.url}</Card.Title>
         </Card>
       </Row>
     </Container>
